@@ -3,8 +3,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const env = process.env.NODE_ENV;
 
+console.log(env)
 module.exports = {
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        mainFiles: ['index'], // 导入文件夹，会先查找文件下面的index.js
+        alias: {
+            pages: path.resolve(__dirname, '../src/pages'),
+            api: path.resolve(__dirname, '../src/api'),
+            images: path.resolve(__dirname, '../assets/images'),
+            components: path.resolve(__dirname, '../src/components')
+        }
+    },
     entry: {
         main: './src/index.js',
     },
@@ -17,11 +29,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
+                include: path.resolve(__dirname, '../src'),
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
+                use: [
+                    'thread-loader',
+                    'babel-loader'
+                ]
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.(jpe?g|png|gif)$/,
@@ -66,7 +85,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            minify: false
+            minify: env === 'development' ? false : true
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
@@ -76,6 +95,13 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: 'all',
+            cacheGroups: {            //  
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    filename: 'vendors.js'
+                }
+            },
         },
         minimize: true,
         minimizer: [
