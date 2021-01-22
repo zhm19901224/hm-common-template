@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const env = process.env.NODE_ENV;
 
-console.log(env)
 module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
