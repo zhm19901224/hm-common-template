@@ -6,7 +6,7 @@
 5. devServer historyApiFallback处理了SPA browserRouter的问题
 6. 自带eslint
 7. 用thread-loader多进程打包，加快打包速度
-
+8. 支持dll打包
 #### 目录结构
 
 build ————————————————— webpack工程化文件  
@@ -41,6 +41,7 @@ assets ———————————————— 雪碧图、字体图标
 #### 启动
 要求npm version > 12
 > 命令：npm i 或 yarn
+> npm run build:dll   第一次启动先执行此命令，打包出dll的库文件缓存，之后在dev环境下打包会非常快
 > npm run dev 开发环境启动
 > npm run build 生产环境打包
 
