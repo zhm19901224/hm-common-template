@@ -48,7 +48,8 @@ const devConfig = {
     },
     plugins,
     optimization: {
-        usedExports: true
+        usedExports: true,
+        minimize: false
     }
 }
 

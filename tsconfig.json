@@ -1,8 +1,11 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "outDir": "./dist",
         "module": "es6",
         "target": "ES5",
-        "allowJs": true
+        "allowJs": true,
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true
     }
 }

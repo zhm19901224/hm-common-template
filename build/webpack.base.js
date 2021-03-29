@@ -5,15 +5,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const env = process.env.NODE_ENV;
 
+require.resolve('react/jsx-runtime');
+
 module.exports = {
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.ts', '.tsx'],
         mainFiles: ['index'], // 导入文件夹，会先查找文件下面的index.js
-        alias: {
+        alias: {    // 别名
             pages: path.resolve(__dirname, '../src/pages'),
             api: path.resolve(__dirname, '../src/api'),
             images: path.resolve(__dirname, '../assets/images'),
-            components: path.resolve(__dirname, '../src/components')
+            components: path.resolve(__dirname, '../src/components'),
         }
     },
     entry: {
@@ -28,7 +30,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)?$/,
                 include: path.resolve(__dirname, '../src'),
                 exclude: /node_modules/,
                 use: [
@@ -37,7 +39,8 @@ module.exports = {
                 ]
             },
             {
-                test: /\.tsx?$/,
+                test: /\.(ts|tsx)?$/,
+                include: path.resolve(__dirname, '../src'),
                 use: 'ts-loader',
                 exclude: /node_modules/
             },
@@ -102,7 +105,6 @@ module.exports = {
                 }
             },
         },
-        minimize: true,
         minimizer: [
             new CssMinimizerPlugin({
                 test: /\.css$/,

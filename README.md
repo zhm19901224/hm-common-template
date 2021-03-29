@@ -52,3 +52,14 @@ assets ———————————————— 雪碧图、字体图标
 
 #### TODO
 > vue3.0支持，precommit、preview等功能，和cli脚手架工具进行关联。。。。
+
+
+
+#### 本次修改
+1. 添加装饰器配置
+2. 添加mobx状态管理，为兼容装饰器，将corejs降级npm i -S core-js@2.6.10
+3. react、react-dom、react-router、react-router-dom对应的ts类型定义文件
+4. 添加react-hot-loader，对HMR的优化
+5. 应用react17新特性，采用FC写组件无需引入React，在webpack中自动注入Js-runtime
+6. 修复js生产环境压缩问题
+7. 采用react-refresh react的模块热更新

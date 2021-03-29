@@ -13,5 +13,7 @@ export default function requeset(url, method, params = {}, otherConfigs = {}){
     } else {
         baseConfig.data = params;
     }
-    return axios(Object.assign(baseConfig, otherConfigs))
+    return axios(Object.assign(baseConfig, otherConfigs)).then(res => {
+        return res.data
+    })
 }
