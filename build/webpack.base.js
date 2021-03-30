@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const env = process.env.NODE_ENV;
-
-require.resolve('react/jsx-runtime');
+const isDev = () => env === 'development'
+require.resolve('react/jsx-runtime');   // 利用react17新特性，functional component无需引入react
 
 module.exports = {
     resolve: {
@@ -30,19 +30,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)?$/,
+                test: /\.(js|jsx)$/,
                 include: path.resolve(__dirname, '../src'),
                 exclude: /node_modules/,
                 use: [
                     'thread-loader',
-                    'babel-loader'
+                    {
+                        loader: require.resolve('babel-loader'),
+                        options: {
+                            plugins: isDev() ? ['react-refresh/babel'] : [],
+                        }
+                    }
                 ]
-            },
-            {
-                test: /\.(ts|tsx)?$/,
-                include: path.resolve(__dirname, '../src'),
-                use: 'ts-loader',
-                exclude: /node_modules/
             },
             {
                 test: /\.(jpe?g|png|gif)$/,

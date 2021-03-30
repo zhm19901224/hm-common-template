@@ -6,7 +6,12 @@ const proxyConfig = require('../proxy.config.js')
 const mockConfig = require('../mock.config.js')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 
+
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+
 const plugins = [
+    new ReactRefreshWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
 ];
 
