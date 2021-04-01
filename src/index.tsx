@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import store from './store/index.js';
+import { store, actions } from './store/index.js';
 import { Provider } from 'mobx-react';
-import Home from './pages/Home/index';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import routes from './routes/index';
+import test from './pages/Test/index';
 
-const App = props => (
-    <Provider store={ store }>
-        <Home />
-    </Provider>
-)
+test();
 
-ReactDom.render(<App />, document.getElementById('root'))
+console.log(routes);
+const App = (props) => (
+  <Provider store={store} action={actions}>
+    <BrowserRouter>
+      <Switch>
+        {routes.map((conf) => (
+          <Route
+            exact={conf.exact}
+            path={conf.path}
+            component={conf.component}
+            key={conf.key}
+          />
+        ))}
+      </Switch>
+    </BrowserRouter>
+  </Provider>
+);
+
+ReactDom.render(<App />, document.getElementById('root'));

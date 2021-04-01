@@ -1,30 +1,32 @@
 import { observable, action, makeAutoObservable } from 'mobx';
-import { getToDoList } from '../api.js'
+import HomeState from '../pages/Home/store/state';
+import HomeAction from '../pages/Home/store/action';
+import { HOME_ACTION_NS, HOME_STATE_NS } from '../constant/mobxConstant';
+import { registSubStore, registSubAction } from '../utils/registStore';
 
+// 全局store
 class Store {
-    constructor(){
-        makeAutoObservable(this)
-    }
-    @observable todoList = [];
-    @action.bound
-    addItem(item){
-        console.log('run')
-        this.todoList.push(item)
-    }
-    @action deleteItem(i){
-        this.todoList.splice(i, i)
-    }
-    @action resetItem(i){
-        this.todoList = []
-    }
-    @action async init(){
-        const res = await getToDoList('/api/getToDoList', 'get')
-        if (res.code === 0) {
-            this.todoList = res.data;
-        }
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 }
 
-const store = new Store()
+// 全局action
+class Action {
+  constructor(item) {}
+}
 
-export default store
+let store = {
+  global: new Store(),
+};
+
+// 注册自模块的store、action
+store = registSubStore(store, HOME_STATE_NS, new HomeState());
+
+let actions = {
+  global: new Action(),
+};
+
+actions = registSubAction(actions, HOME_ACTION_NS, new HomeAction());
+
+export { store, actions };

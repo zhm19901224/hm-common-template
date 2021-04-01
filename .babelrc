@@ -1,22 +1,28 @@
 {
-    "presets": [
-        [ "@babel/preset-env", {
-            "targets": {
-                "chrome": "67" 
-            },
-            "useBuiltIns": "usage"
-        }],
-        [
-            "@babel/preset-react",
-            {
-                "runtime": "automatic"
-            }
-        ]
+  "presets": [
+    // [ "@babel/preset-env", {
+    //     "targets": {
+    //         "chrome": "67"
+    //     },
+    //     "useBuiltIns": "usage"
+    // }],
+    [
+      "@babel/preset-typescript",
+      {
+        "parserOpts": { "strictMode": true }
+      }
     ],
-    "plugins": [
-        // "react-refresh/babel",
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties", { "loose" : true }],
-        "@babel/plugin-syntax-dynamic-import"
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
     ]
+  ],
+  "plugins": [
+    // "react-refresh/babel",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-syntax-dynamic-import"
+  ]
 }
