@@ -1,13 +1,6 @@
-#### 简介
+### shein 中台基础库
 
-1. 内置 react、react-router、redux、react-redux
-2. 样式文件可以使用 sass、less、stylus，默认开启 leCSS module
-3. 在 src/utils/server.js 中通过 axios 封装通用请求方法，通过 devServer proxy 实现跨域代理
-4. 在 mock.config.js 中定义 mock 请求数据信息，基于 devServer express before 拦截 api，无需 mockjs
-5. devServer historyApiFallback 处理了 SPA browserRouter 的问题
-6. 自带 eslint
-7. 用 thread-loader 多进程打包，加快打包速度
-8. 支持 dll 打包
+> 主要技术栈，React 17、mobx、antd
 
 #### 安装
 
