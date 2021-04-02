@@ -6,30 +6,15 @@ import routes from '../../routes/index';
 import TopBar from '../TopBar/index';
 import Main from '../Main/index';
 
-const Container = () => {
-  //   return (
-  //     <Provider store={store} action={actions}>
-  //       <BrowserRouter>
-  //         <TopBar></TopBar>
-
-  //         <Switch>
-  //           {routes.map((conf) => (
-  //             <Route
-  //               exact={conf.exact}
-  //               path={conf.path}
-  //               component={conf.component}
-  //               key={conf.key}
-  //             />
-  //           ))}
-  //         </Switch>
-  //       </BrowserRouter>
-  //     </Provider>
-  //   );
-
+const Container = (props) => {
   return (
     <>
-      <TopBar />
-      <Main />
+      <Provider store={store} action={actions}>
+        <BrowserRouter>
+          <TopBar />
+          <Main>{props.children}</Main>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 };

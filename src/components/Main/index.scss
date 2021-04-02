@@ -1,0 +1,21 @@
+.mainOuter {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.flexContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+}
+
+.mainContainerInner {
+  flex: 1;
+  height: 100%;
+}

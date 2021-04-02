@@ -74,9 +74,12 @@ theme.config.js ——————— 用于定制 antd 的主题颜色
 react、react-dom、react-router、react-router-dom、
 lodash、axios、mobx、mobx-react、typescript
 
-#### toDo
+#### 页面骨架组件说明
 
-1. 添加 react-dev-tools 官方的插件，增强对 yarn 配置优化
+1. src/components/Container 内部对 mobx、reactRouter 进行了封装。其使用类似 slot 插槽
+2. src/components/TopBar 页面顶部区域
+3. src/components/Main 页面主题区域，内部包装了 router 的 Switch。路由变换的页面为此组件内部的内容
+4. src/components/SideBar 侧边栏导航菜单
 
 #### 本次修改 version 1.2.0
 
@@ -103,3 +106,7 @@ lodash、axios、mobx、mobx-react、typescript
    > 在 src/store/index.ts 中引入上面内容并注册进 store
    > 使用时，引入 src/withHoc/withStore.tsx, 将其以装饰器形式注入组件(放最上面)。
    > 通过 this.props.dispatch 调用 action、this.props.getState 获取某命名空间下的 state
+
+#### toDo
+
+1. 添加 react-dev-tools 官方的插件，增强对 yarn 配置优化
