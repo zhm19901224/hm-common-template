@@ -38,10 +38,11 @@ const devConfig = {
   devtool: 'eval-cheap-module-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'), // 服务器根路径
+    watchContentBase: true,
     compress: true, // gzip压缩
     port: 9000,
     open: true,
-    hot: true,
+    // hot: true,
     proxy: proxyConfig,
     historyApiFallback: true,
     before: function (app, server, compiler) {

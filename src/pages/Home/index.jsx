@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import withDispatch from '../../withHoc/withStore';
 import { HOME_STATE_NS, HOME_ACTION_NS } from '../../constant/mobxConstant';
-// 将store内的数据注入组件
-@inject('store')
-@inject('action')
-@observer
+import { Button } from 'antd';
+
+@withDispatch // 提供修改局部组件store的dispatch方法，并注入props
+@inject('store') // 将store内的数据注入组件props
+@inject('action') // 将action注入组件props
+@observer // 观察具体store属性变化，store更新自动触发组件更新
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,7 @@ class Home extends Component {
     } = this.props;
     const { inputValue } = this.state;
     return (
-      <>
+      <div>
         <h3>Hello Everyone, this is todoList Demo!</h3>
         <section>
           <button onClick={this.handleAddItem}>add item</button>
@@ -53,7 +55,8 @@ class Home extends Component {
             <p key={item}>{item}</p>
           ))}
         </div>
-      </>
+        <Button type="primary">Primary Button</Button>
+      </div>
     );
   }
 
@@ -62,4 +65,4 @@ class Home extends Component {
   }
 }
 
-export default withDispatch(Home);
+export default Home;

@@ -5,6 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const env = process.env.NODE_ENV;
 const isDev = () => env === 'development';
+const theme = require('../them.config.js');
+console.log(theme);
+
 require.resolve('react/jsx-runtime'); // 利用react17新特性，functional component无需引入react
 
 const babelLoaderOptions = isDev()
@@ -45,7 +48,6 @@ module.exports = {
     strictExportPresence: true, // export导出缺失，会报error，而不是warning
     rules: [
       {
-        // test: /\.(js|jsx)$/,
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: path.resolve(__dirname, '../src'),
         exclude: /node_modules/,
@@ -70,28 +72,62 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[name]-[local]-[hash:base64:5]',
+              },
+            },
+          },
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(scss|sass)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          //   {
-          //     loader: 'typings-for-css-modules-loader',
-          //   },
           {
             loader: 'css-loader',
             options: {
               // 对于sass文件内部引入的sass或者css也需要先走前面的postcss、sass-loader两个loader先处理
               importLoaders: 2,
-              modules: true,
+              modules: {
+                localIdentName: '[name]-[local]-[hash:base64:5]',
+              },
             },
           },
           'sass-loader',
-
           'postcss-loader',
         ],
       },
+
+      {
+        test: /\.less$/,
+        include: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                modifyVars: theme,
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+
       {
         test: /\.(eot|ttf|svg)$/,
         use: {
@@ -115,7 +151,6 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
-        //
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
@@ -129,29 +164,4 @@ module.exports = {
       }),
     ],
   },
-  // optimization: {
-  //     splitChunks: {
-  //       chunks: 'all',   // 不论同步引入模块，还是异步引入，都做代码分割  （异步加载路由页面）
-  //       minSize: 20000,   //  只有引入大于20k的库才被代码分割
-  //       minRemainingSize: 0,
-  //       minChunks: 1,         // 只要有至少一个第三方模块引入，就可以做代码分割
-  //       maxAsyncRequests: 5,     // 打包前五个第三方库，会做代码分割，都打包进vendor，后面的就不会了这么做了(因为并行加载有上线)
-  //       maxInitialRequests: 3,   // 入口文件如果引入6个js，只对前三个做代码分割
-  //       enforceSizeThreshold: 50000,
-  //       cacheGroups: {            //
-  //         defaultVendors: {
-  //           test: /[\\/]node_modules[\\/]/,
-  //           priority: -10,            // 优先级，放在node_module第三方库的优先级很高，会被打包进vendor.js
-  //           reuseExistingChunk: true,
-  //           filename: 'vendor.js'
-  //         },
-  //         default: {
-  //           minChunks: 2,         // 只有引入至少两个自己的业务模块，才会被打包进
-  //           priority: -20,
-  //           reuseExistingChunk: true,
-  //           filename: 'common.js'     //
-  //         }
-  //       }
-  //     }
-  //   }
 };

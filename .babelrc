@@ -1,11 +1,5 @@
 {
   "presets": [
-    // [ "@babel/preset-env", {
-    //     "targets": {
-    //         "chrome": "67"
-    //     },
-    //     "useBuiltIns": "usage"
-    // }],
     [
       "@babel/preset-typescript",
       {
@@ -20,9 +14,15 @@
     ]
   ],
   "plugins": [
-    // "react-refresh/babel",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    "@babel/plugin-syntax-dynamic-import"
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
   ]
 }
