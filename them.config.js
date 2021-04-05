@@ -1,6 +1,6 @@
 module.exports = {
-  'primary-color': 'red',
-  'primary-color': 'red',
-  'link-color': 'red',
-  'border-radius-base': '2px',
+  'primary-color': '#abcdef',
+  'primary-color': '#abcdef',
+  'link-color': '#abcdef',
+  'border-radius-base': '6px',
 };

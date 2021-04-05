@@ -29,6 +29,7 @@ module.exports = {
     mainFiles: ['index'], // 导入文件夹，会先查找文件下面的index.ts
     alias: {
       // 别名
+      assets: path.resolve(__dirname, '../src/assets'),
       pages: path.resolve(__dirname, '../src/pages'),
       api: path.resolve(__dirname, '../src/api'),
       images: path.resolve(__dirname, '../assets/images'),
