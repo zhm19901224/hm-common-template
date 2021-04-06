@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './index.scss';
 import { Menu } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   HomeOutlined,
   RiseOutlined,
   OrderedListOutlined,
 } from '@ant-design/icons';
+
 const menuList = [
   {
     key: '/',
@@ -21,8 +22,10 @@ const menuList = [
 ];
 
 function SideBar(props) {
+  const history = useHistory();
   const handleMenuClick = (e) => {
-    props.history.push(e.key);
+    // props.history.push(e.key);
+    history.push(e.key);
   };
 
   return (
@@ -38,4 +41,6 @@ function SideBar(props) {
   );
 }
 
-export default withRouter(SideBar);
+// export default withRouter(SideBar);
+
+export default SideBar;
