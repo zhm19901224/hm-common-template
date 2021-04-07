@@ -17,6 +17,7 @@ module.exports = {
     ],
     axios: ['axios'],
     lodash: ['lodash'],
+    antd: ['antd'],
   },
   output: {
     path: path.resolve(__dirname, '../dll'),

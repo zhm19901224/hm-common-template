@@ -6,7 +6,6 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const env = process.env.NODE_ENV;
 const isDev = () => env === 'development';
 const theme = require('../them.config.js');
-console.log(theme);
 
 require.resolve('react/jsx-runtime'); // 利用react17新特性，functional component无需引入react
 
@@ -151,13 +150,16 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          filename: 'vendors.js',
-        },
-      },
+      /* 不能匹配node_modules，一些第三方模块，如antd独有的code splitting按需加载策略，
+      用了报错，影响antd的样式模块打包输出
+      */
+      // cacheGroups: {
+      //   defaultVendors: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     priority: -10,
+      //     filename: 'vendors.js',
+      //   },
+      // },
     },
     minimizer: [
       new CssMinimizerPlugin({

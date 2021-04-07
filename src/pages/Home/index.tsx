@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import withStore from '../../withHoc/withStore';
-import { HOME_STATE_NS, HOME_ACTION_NS } from '../../constant/mobxConstant';
+import { observer } from 'mobx-react';
 import { Button, Input, Table, Popconfirm } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+// 引用的第三方模块写最上方，业务代码模块统一写在下方
+import withStore from '../../withHoc/withStore';
+import { HOME_STATE_NS, HOME_ACTION_NS } from '../../constant/mobxConstant';
 import styles from './index.scss';
 
 type StateType = {
@@ -20,12 +21,17 @@ interface Home {
   props: propType;
 }
 
+interface ToDoItem {
+  key: string | number;
+  name: string;
+}
+
 @withStore(HOME_STATE_NS, HOME_ACTION_NS)
 // @inject('store') // 将store内的数据注入组件props, 使用withDispatch后就不用使用它了。
 // @inject('action') // 将action注入组件props, 使用withDispatch后就不用使用它了。
 @observer // 观察具体store属性变化，store更新自动触发组件更新
 class Home extends Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       inputValue: '',
@@ -35,7 +41,7 @@ class Home extends Component {
     this.handleAddItem = this.handleAddItem.bind(this);
   }
 
-  handleInputChange(e) {
+  handleInputChange(e: any) {
     this.setState({ inputValue: e.target.value });
   }
 
@@ -53,7 +59,7 @@ class Home extends Component {
   render() {
     const { todoList } = this.props.getState();
     const { inputValue } = this.state;
-    const dataSource = todoList.map((item) => item);
+    const dataSource = todoList.map((item: ToDoItem) => item);
 
     interface ToDo {
       key: string | Number;
@@ -81,6 +87,7 @@ class Home extends Component {
         ),
       },
     ];
+
     return (
       <div>
         <h3 className={styles.todoTitle}>
@@ -90,12 +97,12 @@ class Home extends Component {
           <Button
             type="primary"
             onClick={this.handleAddItem}
-            style={{ marginLeft: 40 }}
+            className={styles.handleBtn}
           >
             Add Item
           </Button>
           <Input
-            style={{ width: 400, marginLeft: 20 }}
+            className={styles.toDoInput}
             type="text"
             value={inputValue}
             onChange={this.handleInputChange}
@@ -103,13 +110,13 @@ class Home extends Component {
           <Button
             type="primary"
             onClick={() => this.props.dispatch('reset')}
-            style={{ marginLeft: 40 }}
+            className={styles.handleBtn}
           >
             Reset
           </Button>
         </section>
-        <section>
-          <Table dataSource={dataSource} columns={columns} />;
+        <section className={styles.tableContainer}>
+          <Table dataSource={dataSource} columns={columns} />
         </section>
       </div>
     );

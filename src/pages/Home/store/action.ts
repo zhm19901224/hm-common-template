@@ -6,8 +6,12 @@ abstract class HomeState {
   abstract todoList: [];
 }
 
+interface ToDoListItem {
+  name: string;
+  key: number | string;
+}
 export default class HomeAction extends HomeState {
-  todoList;
+  todoList: any;
   constructor() {
     super();
     makeAutoObservable(this);
@@ -20,7 +24,9 @@ export default class HomeAction extends HomeState {
 
   @action
   deleteItem(key: string | number): void {
-    let findI = this.todoList.findIndex((item) => item.key === key);
+    let findI = this.todoList.findIndex(
+      (item: ToDoListItem) => item.key === key
+    );
     this.todoList.splice(findI, 1);
   }
 

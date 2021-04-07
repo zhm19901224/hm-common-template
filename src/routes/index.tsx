@@ -1,6 +1,4 @@
-import Home from 'pages/Home/index';
-import NotFound from 'pages/NotFound/index';
-import Dashboard from '../pages/Dashboard/index';
+import { Home, Dashboard, NotFound } from './lazyComponents';
 
 export default [
   {
