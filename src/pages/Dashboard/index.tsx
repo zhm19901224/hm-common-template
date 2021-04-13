@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default function Dashboard() {
   // 尽量不要这么做，尽可能做到表现与逻辑相分离。styledComponent虽然好用，但是理念不够好。
   const style = {

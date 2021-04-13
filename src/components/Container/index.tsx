@@ -5,15 +5,19 @@ import { store, actions } from '../../store/index';
 import routes from '../../routes/index';
 import TopBar from '../TopBar/index';
 import Main from '../Main/index';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN';
 
-const Container = (props) => {
+const Container = (props: any) => {
   return (
     <>
       <Provider store={store} action={actions}>
-        <BrowserRouter>
-          <TopBar />
-          <Main>{props.children}</Main>
-        </BrowserRouter>
+        <ConfigProvider local={zhCN}>
+          <BrowserRouter>
+            <TopBar />
+            <Main>{props.children}</Main>
+          </BrowserRouter>
+        </ConfigProvider>
       </Provider>
     </>
   );

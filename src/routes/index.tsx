@@ -1,4 +1,5 @@
 import { Home, Dashboard, NotFound } from './lazyComponents';
+import Hooks from '../pages/Hooks/index';
 
 export default [
   {
@@ -18,6 +19,12 @@ export default [
     component: Dashboard,
     exact: true,
     key: 'dashboard',
+  },
+  {
+    path: '/hooks',
+    component: Hooks,
+    exact: true,
+    key: 'hooks',
   },
   {
     path: '*',

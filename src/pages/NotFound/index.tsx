@@ -7,7 +7,6 @@ import styles from './index.scss';
 class NotFound extends React.Component {
   constructor(props) {
     super(props);
-
     this.goBack = this.goBack.bind(this);
     this.goIndex = this.goIndex.bind(this);
   }
