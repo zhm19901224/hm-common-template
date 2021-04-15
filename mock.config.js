@@ -4,12 +4,12 @@ module.exports = {
     '/api/getUserInfo': {
       code: 0,
       message: 'success',
-      data: [{ uid: 0, name: 'Lilei' }],
+      data: [{ uid: 0, name: 'Lilei' }]
     },
     '/api/getToDoList': {
       code: 0,
       message: 'success',
-      data: [{ name: 'defItem', key: 123 }],
-    },
-  },
+      data: [{ name: 'defItem', key: 123 }]
+    }
+  }
 };

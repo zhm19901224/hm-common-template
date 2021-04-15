@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './index.scss';
 
 class NotFound extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.goBack = this.goBack.bind(this);
     this.goIndex = this.goIndex.bind(this);

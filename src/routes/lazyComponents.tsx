@@ -6,7 +6,7 @@ function createAsyncComponent(componentPath: string) {
   // https://blog.csdn.net/u010682774/article/details/113607979
   return Loadable({
     loader: () => import(`../${componentPath}.tsx`),
-    loading: Spin,
+    loading: Spin
   });
 }
 

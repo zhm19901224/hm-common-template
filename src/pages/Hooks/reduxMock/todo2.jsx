@@ -13,7 +13,7 @@ export default class Todo2 extends Component {
 
   render() {
     let {
-      todo2: { list },
+      todo2: { list }
     } = this.props;
     return (
       <>

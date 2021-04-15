@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import styles from './index.scss';
 import { Menu } from 'antd';
 import { useHistory } from 'react-router-dom';
 import {
   HomeOutlined,
   RiseOutlined,
-  OrderedListOutlined,
+  OrderedListOutlined
 } from '@ant-design/icons';
 
 const menuList = [
   {
     key: '/',
     icon: HomeOutlined,
-    menuName: 'Home',
+    menuName: 'Home'
   },
   {
     key: '/dashboard',
     icon: RiseOutlined,
-    menuName: 'dashboard',
-  },
+    menuName: 'dashboard'
+  }
 ];
 
-function SideBar(props) {
+function SideBar(props: any) {
   const history = useHistory();
-  const handleMenuClick = (e) => {
+  const handleMenuClick = (e: any) => {
     // props.history.push(e.key);
     history.push(e.key);
   };

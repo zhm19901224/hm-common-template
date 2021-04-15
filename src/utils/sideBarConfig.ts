@@ -6,6 +6,6 @@ const menuList = [
     memuName: 'home',
     key: 'home',
     path: '/',
-    icon: HomeOutlined,
-  },
+    icon: HomeOutlined
+  }
 ];

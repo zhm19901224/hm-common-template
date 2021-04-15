@@ -3,10 +3,10 @@ import axios from 'axios';
 export default function requeset(url, method, params = {}, otherConfigs = {}) {
   let baseConfig = {
     headers: {
-      'content-type': ' application/json',
+      'content-type': ' application/json'
     },
     method,
-    url,
+    url
   };
   if (method === 'get') {
     baseConfig.params = params;

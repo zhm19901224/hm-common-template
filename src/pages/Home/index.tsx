@@ -7,6 +7,20 @@ import withStore from '../../withHoc/withStore';
 import { HOME_STATE_NS, HOME_ACTION_NS } from '../../constant/mobxConstant';
 import styles from './index.scss';
 
+interface dataItem{
+  name: string;
+}
+
+class DataManager<T extends dataItem> {
+  constructor(public data: T[]){
+    this.data = data;
+  }
+  getName(index: number): string{
+    return this.data[index].name;
+  }
+}
+
+
 type StateType = {
   inputValue: string;
 };
@@ -34,7 +48,7 @@ class Home extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      inputValue: '',
+      inputValue: ''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -70,7 +84,7 @@ class Home extends Component {
       {
         title: 'Name',
         dataIndex: 'name',
-        key: 'name',
+        key: 'name'
       },
       {
         title: 'Action',
@@ -84,8 +98,8 @@ class Home extends Component {
           >
             <a href="#">Delete</a>
           </Popconfirm>
-        ),
-      },
+        )
+      }
     ];
 
     return (

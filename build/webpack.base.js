@@ -9,18 +9,16 @@ const theme = require('../them.config.js');
 
 require.resolve('react/jsx-runtime'); // 利用react17新特性，functional component无需引入react
 
-const babelLoaderOptions = isDev()
-  ? {
-      plugins: ['react-refresh/babel'],
-      compact: true,
-      cacheDirectory: true,
-      cacheCompression: false,
-    }
-  : {
-      compact: false,
-      cacheDirectory: true,
-      cacheCompression: false,
-    };
+const babelLoaderOptions = isDev() ? {
+  plugins: ['react-refresh/babel'],
+  compact: true,
+  cacheDirectory: true,
+  cacheCompression: false
+} : {
+  compact: false,
+  cacheDirectory: true,
+  cacheCompression: false
+};
 
 module.exports = {
   resolve: {
@@ -32,17 +30,17 @@ module.exports = {
       pages: path.resolve(__dirname, '../src/pages'),
       api: path.resolve(__dirname, '../src/api'),
       images: path.resolve(__dirname, '../assets/images'),
-      components: path.resolve(__dirname, '../src/components'),
-    },
+      components: path.resolve(__dirname, '../src/components')
+    }
   },
   entry: {
-    main: './src/index.tsx',
+    main: './src/index.tsx'
   },
   output: {
     publicPath: '/',
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].chunk.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     strictExportPresence: true, // export导出缺失，会报error，而不是warning
@@ -55,9 +53,9 @@ module.exports = {
           'thread-loader',
           {
             loader: require.resolve('babel-loader'),
-            options: babelLoaderOptions,
-          },
-        ],
+            options: babelLoaderOptions
+          }
+        ]
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -66,9 +64,9 @@ module.exports = {
           options: {
             name: '[name]_[hash].[ext]', // placeholder占位符
             outputPath: 'images/',
-            limit: 2048,
-          },
-        },
+            limit: 2048
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -79,12 +77,12 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: '[name]-[local]-[hash:base64:5]',
-              },
-            },
+                localIdentName: '[name]-[local]-[hash:base64:5]'
+              }
+            }
           },
-          'postcss-loader',
-        ],
+          'postcss-loader'
+        ]
       },
       {
         test: /\.(scss|sass)$/,
@@ -96,13 +94,13 @@ module.exports = {
               // 对于sass文件内部引入的sass或者css也需要先走前面的postcss、sass-loader两个loader先处理
               importLoaders: 2,
               modules: {
-                localIdentName: '[name]-[local]-[hash:base64:5]',
-              },
-            },
+                localIdentName: '[name]-[local]-[hash:base64:5]'
+              }
+            }
           },
           'sass-loader',
-          'postcss-loader',
-        ],
+          'postcss-loader'
+        ]
       },
 
       {
@@ -113,43 +111,43 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-            },
+              importLoaders: 1
+            }
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
                 modifyVars: theme,
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+                javascriptEnabled: true
+              }
+            }
+          }
+        ]
       },
 
       {
         test: /\.(eot|ttf|svg)$/,
         use: {
-          loader: 'file-loader',
-        },
-      },
-    ],
+          loader: 'file-loader'
+        }
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      minify: !isDev(),
+      minify: !isDev()
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[name].chunk.css',
-    }),
+      chunkFilename: '[name].chunk.css'
+    })
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: 'all'
       /* 不能匹配node_modules，一些第三方模块，如antd独有的code splitting按需加载策略，
       用了报错，影响antd的样式模块打包输出
       */
@@ -163,8 +161,8 @@ module.exports = {
     },
     minimizer: [
       new CssMinimizerPlugin({
-        test: /\.css$/,
-      }),
-    ],
-  },
+        test: /\.css$/
+      })
+    ]
+  }
 };

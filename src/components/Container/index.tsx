@@ -12,7 +12,7 @@ const Container = (props: any) => {
   return (
     <>
       <Provider store={store} action={actions}>
-        <ConfigProvider local={zhCN}>
+        <ConfigProvider locale={zhCN}>
           <BrowserRouter>
             <TopBar />
             <Main>{props.children}</Main>

@@ -6,29 +6,29 @@ export default [
     path: '/',
     component: Home,
     exact: true,
-    key: '/',
+    key: '/'
   },
   {
     path: '/home',
     component: Home,
     exact: true,
-    key: '/home',
+    key: '/home'
   },
   {
     path: '/dashboard',
     component: Dashboard,
     exact: true,
-    key: 'dashboard',
+    key: 'dashboard'
   },
   {
     path: '/hooks',
     component: Hooks,
     exact: true,
-    key: 'hooks',
+    key: 'hooks'
   },
   {
     path: '*',
     component: NotFound,
-    key: 'notFound',
-  },
+    key: 'notFound'
+  }
 ];

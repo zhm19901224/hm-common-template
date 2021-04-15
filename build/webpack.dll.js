@@ -13,22 +13,22 @@ module.exports = {
       'redux',
       'react-redux',
       'mobx-react',
-      'mobx',
+      'mobx'
     ],
     axios: ['axios'],
     lodash: ['lodash'],
-    antd: ['antd'],
+    antd: ['antd']
   },
   output: {
     path: path.resolve(__dirname, '../dll'),
     filename: '[name].dll.js',
-    library: '[name]', // 打包的是一个库， 通过变量方式把内容导出
+    library: '[name]' // 打包的是一个库， 通过变量方式把内容导出
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       name: '[name]',
       path: path.resolve(__dirname, '../dll/[name].manifest.json'), // 打包出的库文件变量，和真正需要从node_modules中分析打包的库的映射文件
-    }),
-  ],
+    })
+  ]
 };

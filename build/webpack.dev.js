@@ -10,7 +10,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const plugins = [
   new ReactRefreshWebpackPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
+  new webpack.HotModuleReplacementPlugin()
 ];
 
 const dllfiles = fs.readdirSync(path.resolve(__dirname, '../dll/')); // dll文件夹下所有文件名的数组
@@ -19,7 +19,7 @@ dllfiles.forEach((filename) => {
   if (/.*\.dll.js/.test(filename)) {
     plugins.push(
       new AddAssetHtmlWebpackPlugin({
-        filepath: path.resolve(__dirname, '../dll', filename),
+        filepath: path.resolve(__dirname, '../dll', filename)
       })
     );
   }
@@ -27,7 +27,7 @@ dllfiles.forEach((filename) => {
   if (/.*\.manifest.json/.test(filename)) {
     plugins.push(
       new webpack.DllReferencePlugin({
-        manifest: path.resolve(__dirname, '../dll', filename),
+        manifest: path.resolve(__dirname, '../dll', filename)
       })
     );
   }
@@ -51,13 +51,13 @@ const devConfig = {
           app.all(url, (req, res) => res.json(data));
         }
       }
-    },
+    }
   },
   plugins,
   optimization: {
     usedExports: true,
-    minimize: false,
-  },
+    minimize: false
+  }
 };
 
 module.exports = merge(baseConfig, devConfig);

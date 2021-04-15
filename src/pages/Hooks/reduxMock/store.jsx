@@ -5,11 +5,11 @@ const { Consumer } = Ctx;
 let store = {
   global: {},
   todo1: {
-    list: [],
+    list: []
   },
   todo2: {
-    list: ['yyy', 'mmm', 'lll'],
-  },
+    list: ['yyy', 'mmm', 'lll']
+  }
 };
 
 function connect(Wrap) {

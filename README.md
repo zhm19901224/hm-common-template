@@ -95,6 +95,10 @@ lodash、axios、mobx、mobx-react、typescript
 10. 更新 babel 的预设为@babel/preset-typescript
 11. 引入 antd4.15.0，配置 babel-plugin-import，实现 antd css 按需加载
 
+#### 本次修改 version 1.2.1
+
+1. 加入 eslint 对 ts、js 代码进行检查
+
 #### 规则约定
 
 1. 只有页面组件可以使用 class component，子组件尽量使用 FC，配合 hooks
