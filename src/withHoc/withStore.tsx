@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, Component } from 'react';
 import { store, actions } from '../store/index';
 
 
+
 function dispatchHoc(stateNs?: string, actionNs?: string): any {
-  return function (Wrap: any) {
+  return function(Wrap: any) {
     return class extends React.Component {
       constructor(props: any) {
         super(props);

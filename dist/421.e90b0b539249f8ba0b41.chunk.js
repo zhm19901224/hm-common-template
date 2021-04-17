@@ -1,0 +1,1 @@
+(self.webpackChunkhm_common_template=self.webpackChunkhm_common_template||[]).push([[421],{67421:(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>function(){return(0,a.jsx)("h1",{style:{textAlign:"center",marginTop:100,color:"#abcdef",fontSize:30},children:"This is Dashboard page!"})}});var a=n(85893);n(67294)}}]);
