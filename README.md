@@ -26,6 +26,16 @@ npm run dev
 // 生产环境打包
 npm run build
 
+// 启动http-server, 测试./dist打包输出的正确性
+npm run build:test
+
+
+// 进行 eslint 格式检查
+npm run lint
+
+// 进行 ts 语法检查
+npm run tscheck
+
 ```
 
 #### 目录结构
@@ -98,6 +108,8 @@ lodash、axios、mobx、mobx-react、typescript
 #### 本次修改 version 1.2.1
 
 1. 加入 eslint 对 ts、js 代码进行检查
+2. 加入 ts 语法检查
+3. 加入对打包输出文件的正确性测试
 
 #### 规则约定
 

@@ -36,7 +36,7 @@
     // "noFallthroughCasesInSwitch": true,         
     // "noUncheckedIndexedAccess": true,          
     // "noPropertyAccessFromIndexSignature": true, 
-    // "moduleResolution": "node",               
+    "moduleResolution": "node",               
     // "baseUrl": "./",                           
     // "paths": {},                               
     // "rootDirs": [],                          
@@ -50,8 +50,8 @@
     // "mapRoot": "",                               
     // "inlineSourceMap": true,                    
     // "inlineSources": true,                    
-    // "experimentalDecorators": true,            
-    // "emitDecoratorMetadata": true,              
+    "experimentalDecorators": true,            
+    "emitDecoratorMetadata": true,              
     "skipLibCheck": true, 
     "forceConsistentCasingInFileNames": true
   }
