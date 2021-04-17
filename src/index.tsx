@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import { Route } from 'react-router-dom';
 import routes from './routes/index';
 import Container from './components/Container/index';
+import './index.scss';
 
 const App = () => (
   <Container>

@@ -110,6 +110,7 @@ lodash、axios、mobx、mobx-react、typescript
 1. 加入 eslint 对 ts、js 代码进行检查
 2. 加入 ts 语法检查
 3. 加入对打包输出文件的正确性测试
+4. 入口文件引入全局的 css reset
 
 #### 规则约定
 
